@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect} from 'react'
+import { useState, useCallback, useEffect, useRef} from 'react'
 import './App.css'
 
 
@@ -35,12 +35,25 @@ function App() {
   
   }, [passlen, nums, spec]);
 
-  
+  // Function to copy the generated password to clipboard
+  //We can use Usecallback here as well, but it's not necessary since it doesn't have dependencies.
+  const copyToClipboard = () => {
+    passwordRef.current.select();
+    window.navigator.clipboard.writeText(password);
+  };
+
+  //UseEffect hook to perform side effects in function components
   //It has 2 parameters: a function to run and an array of dependencies
   // Generate password whenever dependencies change
   useEffect(()=>{
     passwordGenerator();
   }, [passlen, nums, spec, passwordGenerator]);
+
+
+//UseRef hook to create a reference to the password input field
+// It allows direct access to a DOM element
+//we created a reference called passwordRef and assigned it to the input field in the JSX
+  const passwordRef = useRef(null);
 
 
   return (
@@ -51,23 +64,25 @@ function App() {
         <input
           type="text"
           value={password}
-          className="outline-none w-full py-1 px-3 text-white"
+          className="outline-none w-full py-1 px-3 text-red-500 bg-gray-700"
           placeholder="Password"
           readOnly
+          ref={passwordRef}
           
         />
         <button
           className='outline-none bg-blue-700 text-white px-3 py-0.5 shrink-0'
+          onClick={copyToClipboard}
         >copy</button>
       </div>
-      <div className='flex text-sm gap-x-2'>
+      <div className='flex text-sm gap-x-2 h-20'>
         <div className='flex items-center gap-x-1'>
           <input 
             type="range"
             min={8}
             max={100}
             value={passlen}
-            className='cursor-pointer w-32'
+            className='cursor-pointer w-32 accent-blue-600 hover:accent-blue-800'
             onChange={(e) => {setPasslen(e.target.value)}}
           />
           <label>Length: {passlen}</label>
@@ -75,6 +90,7 @@ function App() {
         <div className="flex items-center gap-x-1">
           <input
               type="checkbox"
+              className='accent-yellow-500 hover:accent-yellow-600 h-5 w-5'
               defaultChecked={nums}
               id="numberInput"
               onChange={() => {
@@ -86,6 +102,7 @@ function App() {
         <div className="flex items-center gap-x-1">
           <input
               type="checkbox"
+              className='accent-green-500 hover:accent-green-600 h-5 w-5'
               defaultChecked={spec}
               id="characterInput"
               onChange={() => {
