@@ -5,12 +5,11 @@ import Input from '../components/Input.jsx'
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   const [selectedCurrency, setSelectedCurrency] = useState('INR');
   const [toSelectedCurrency, setToSelectedCurrency] = useState('USD');
   
-  let data = useCurrency(selectedCurrency);
-  console.log(data[toSelectedCurrency]);
+  let data = useCurrency(selectedCurrency, toSelectedCurrency);
   
   return (
     <div className="App"
@@ -18,7 +17,7 @@ function App() {
           justifyContent: 'center', width: '100vw', height: '100vh',
           backgroundImage: 'url(../src/assets/background.jpg)'}}>
       <h1 className="text-3xl font-bold underline text-red-600">
-        Currency Convertor
+        Currency Converter
       </h1>
       <br />
       <div>
@@ -29,13 +28,18 @@ function App() {
           selectedCurrency={selectedCurrency}
           setSelectedCurrency={setSelectedCurrency}
         />
+        <button id="swap" onClick={() => {
+          const temp = selectedCurrency;
+          setSelectedCurrency(toSelectedCurrency);
+          setToSelectedCurrency(temp);
+        }}>Swap</button>
         <Input
           label="To"
           onChange={(e)=>setCount(e.target.value)}
-          selectedCurrency={selectedCurrency}
+          selectedCurrency={toSelectedCurrency}
           setSelectedCurrency={setToSelectedCurrency}
           value={count * data[toSelectedCurrency] || 0}
-          disabled ={true}
+          disabled = {true}
         />
 
       </div>

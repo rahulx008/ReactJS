@@ -1,4 +1,4 @@
-import  React, { use } from "react";
+import React from "react";
 
 function Input({
     label,
@@ -6,17 +6,17 @@ function Input({
     onChange,
     selectedCurrency,
     setSelectedCurrency,
-    disabled = false,
+    disabled=false,
     type = "number",
-    style = { border: '1px solid black', padding: '8px', borderRadius: '4px'},
+    style = { border: '1px solid black', padding: '30px', borderRadius: '10px'},
 
 }) {
-
+    
     return (
-        <div className="bg-gray-200 py-10 m-2" style={{ ...style }}>
-            <label className="text-blue-500 px-5 py-2">{label}</label>
-            <input className="bg-red-500 text-black border-gray-300 rounded-md p-2" type={type} value={value} onChange={onChange} />
-            <select className="text-black ml-2 px-3 py-2 border border-gray-300 rounded-md " onChange={(e) => setSelectedCurrency(e.target.value)}>
+        <div className="bg-blue-200  m-2" style={{ ...style }}>
+            <label className="text-3xl font-bold text-blue-500 pr-5 py-2">{label}</label>
+            <input className="text-3xl bg-yellow-300 text-black border-gray-300 rounded-md p-2" type={type} value={value} onChange={onChange} disabled={disabled}   />
+            <select className="text-3xl text-black ml-2 px-3 py-2 border border-gray-300 rounded-md " value={selectedCurrency} onChange={(e) => setSelectedCurrency(e.target.value)}>
                 <option>USD</option>
                 <option>INR</option>
                 <option>EUR</option>
