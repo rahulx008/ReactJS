@@ -1,6 +1,5 @@
 import  React, { use } from "react";
 
-
 function Input({
     label,
     value,
@@ -14,10 +13,10 @@ function Input({
 }) {
 
     return (
-        <div style={{ backgroundColor: 'lightgray', padding: '10px', margin: '10px', ...style }}>
-            <label>{label}</label>
-            <input type={type} value={value} onChange={onChange} />
-            <select style={{ marginLeft: '8px' }} onChange={(e) => setSelectedCurrency(e.target.value)}>
+        <div className="bg-gray-200 py-10 m-2" style={{ ...style }}>
+            <label className="text-blue-500 px-5 py-2">{label}</label>
+            <input className="bg-red-500 text-black border-gray-300 rounded-md p-2" type={type} value={value} onChange={onChange} />
+            <select className="text-black ml-2 px-3 py-2 border border-gray-300 rounded-md " onChange={(e) => setSelectedCurrency(e.target.value)}>
                 <option>USD</option>
                 <option>INR</option>
                 <option>EUR</option>

@@ -7,15 +7,13 @@ function useCurrency(currency){
         fetch(`https://api.exchangerate-api.com/v4/latest/${currency}`)
             .then((res) => res.json())
             .then((jsonData) => {
-                
-                  // This will show the parsed JSON
-                setData(jsonData);
+                setData(jsonData['rates']);
             })
             .catch(error => {
                 console.error('Error fetching currency data:', error);
             });
     }, [currency]);
-    console.log(data.rates);
+    console.log(data);
     
     return data;
 }
