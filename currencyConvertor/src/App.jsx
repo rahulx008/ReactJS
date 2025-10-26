@@ -10,6 +10,7 @@ function App() {
   const [toSelectedCurrency, setToSelectedCurrency] = useState('USD');
   
   let data = useCurrency(selectedCurrency, toSelectedCurrency);
+  let options = Object.keys(data);
   
   return (
     <div className="App"
@@ -27,11 +28,13 @@ function App() {
           onChange={(e) => setCount(e.target.value)}
           selectedCurrency={selectedCurrency}
           setSelectedCurrency={setSelectedCurrency}
+          allCurrencies={options}
         />
         <button id="swap" onClick={() => {
           const temp = selectedCurrency;
           setSelectedCurrency(toSelectedCurrency);
           setToSelectedCurrency(temp);
+
         }}>Swap</button>
         <Input
           label="To"
@@ -39,6 +42,7 @@ function App() {
           selectedCurrency={toSelectedCurrency}
           setSelectedCurrency={setToSelectedCurrency}
           value={count * data[toSelectedCurrency] || 0}
+          allCurrencies={options}
           disabled = {true}
         />
 
