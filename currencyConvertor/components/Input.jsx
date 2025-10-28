@@ -22,6 +22,7 @@ function Input({
                 value={selectedCurrency} 
                 onChange={(e) => setSelectedCurrency(e.target.value)}  
             >   
+            
                     {allCurrencies.map(currency => (
                      <option  key={currency} value={currency}>{currency}</option>
                 ))}
