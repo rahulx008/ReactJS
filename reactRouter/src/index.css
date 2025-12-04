@@ -3,8 +3,14 @@
 #root {
   margin: auto;
   width:100%;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
+}
+
+header{
+  margin: auto;
+  width:inherit;
+  padding: 0;
 }
 
 
