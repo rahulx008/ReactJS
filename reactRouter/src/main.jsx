@@ -8,7 +8,7 @@ import Home from './Components/Home/Home';
 import About from './Components/About/About';
 import Contacts from './Components/Contacts/Contacts';
 import User from './Components/User/User';
-import Github from './Components/Github/Github';
+import Github, { githubLoader } from './Components/Github/Github';
 
 //Method 1
 // const router = createBrowserRouter([
@@ -42,7 +42,8 @@ const router = createBrowserRouter(
       <Route path='user/:userId' element={<User />} />
       <Route 
         path='github' 
-        element={<Github />} />
+        element={<Github />}
+        loader={githubLoader} />
     </Route>
   )
 );
