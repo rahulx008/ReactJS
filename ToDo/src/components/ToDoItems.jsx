@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { useToDo } from "../contexts";
+import toneComp from "../assets/completed.wav";
+import toneDel from "../assets/Delete.wav";
 
 function TodoItem({ todo }) {
+    const completeTone = new Audio(toneComp);
+    const deleteTone = new Audio(toneDel);
+    completeTone.preload = 'auto';
+    deleteTone.preload = 'auto';
+
     const {updateToDo, removeToDo, toggleToDo} = useToDo();
     const [isTodoEditable, setIsTodoEditable]=useState(false);
     const [todoMsg, setTodoMsg] =useState(todo.title);
@@ -17,6 +24,10 @@ function TodoItem({ todo }) {
 
     const handleToggle=()=>{
         toggleToDo(todo.id)
+        if(!todo.completed){
+            completeTone.play().catch((error)=>console.log("Audio play error:", error));
+        }
+        
     }
 
     return (
@@ -25,12 +36,22 @@ function TodoItem({ todo }) {
                 todo.completed ? "bg-[#c6e9a7]" : "bg-[#ccbed7]"
             }`}
         >
-            <input
+            {/* <input
                 type="checkbox"
                 className="cursor-pointer"
                 checked={todo.completed}
                 onChange={handleToggle}
-            />
+            /> */}
+            <button
+                className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0 disabled:opacity-50"
+                onClick={() => {
+                    handleToggle();
+                }}
+                
+            >
+                {!todo.completed ? "⌛" : "✔️"}
+            </button>
+
             <input
                 type="text"
                 className={`border outline-none w-full bg-transparent rounded-lg ${
@@ -40,6 +61,8 @@ function TodoItem({ todo }) {
                 onChange={(e) => setTodoMsg(e.target.value)}
                 readOnly={!isTodoEditable}
             />
+            
+
             {/* Edit, Save Button */}
             <button
                 className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0 disabled:opacity-50"
@@ -54,10 +77,14 @@ function TodoItem({ todo }) {
             >
                 {isTodoEditable ? "📁" : "✏️"}
             </button>
+
             {/* Delete Todo Button */}
             <button
                 className="inline-flex w-8 h-8 rounded-lg text-sm border border-black/10 justify-center items-center bg-gray-50 hover:bg-gray-100 shrink-0"
-                onClick={() => handleRemove(todo.id)}
+                onClick={() =>{
+                    handleRemove();
+                    deleteTone.play().catch((error)=>console.log("Audio play error:", error));
+                }}
             >
                 ❌
             </button>

@@ -14,19 +14,19 @@ function TodoForm() {
     }
 
     return (
-        <form  onSubmit={add} className="flex">
+        <form  onSubmit={add} className="flex w-full ">
             <input
                 type="text"
                 placeholder="Write Todo..."
-                className="w-full border border-black/10 rounded-l-lg px-3 outline-none duration-150 bg-white/20 py-1.5"
+                className="w-full max-w-none border border-black/10 rounded-l-lg px-3 outline-none duration-150 bg-white/20 py-1.5"
                 onChange={(e)=>setTitle(e.target.value)}
                 value={title}   
                 
             />
             <button type="submit"
                 
-                className="rounded-r-lg px-3 py-1 bg-green-600 text-white shrink-0">
-                
+                className="rounded-r-lg px-3 py-1 bg-green-500 text-green shrink-0">
+                Add
             </button>
         </form>
     );
