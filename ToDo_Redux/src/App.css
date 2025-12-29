@@ -1,5 +1,7 @@
+@import "tailwindcss";
 #root {
-  max-width: 1280px;
+  min-width: 75vw;
+  max-width: 75vw;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -27,16 +29,24 @@
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
+
 
 .card {
   padding: 2em;
 }
 
-.read-the-docs {
-  color: #888;
+button {
+  font-weight: 600;
+  border: 2px solid #646cff;
+  background-color: transparent;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  cursor: pointer;
+  transition: border-color 300ms, color 300ms, background-color 300ms;
+}
+
+button:hover {
+  background-color: #646cff;
+  color: white;
 }

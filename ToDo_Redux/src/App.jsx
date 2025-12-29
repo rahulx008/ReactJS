@@ -1,20 +1,42 @@
-import { useState } from 'react';
-import { Provider } from 'react-redux'; 
-import { store } from './redux/store';
-import Counter from './components/counter';
+import './App.css';
+import { Provider, useSelector } from 'react-redux'; 
 
-import './App.css'
+
+import Counter from './components/counter';
+import TodoForm from './components/TodoForm';
+import TodoItem from './components/todoItems';
 
 function App() {
-
+   const todos = useSelector((state) => state.todo.todos);
+  
   return (
-    <Provider store={store}>
-      
-      <h1>ToDo Redux Toolkit</h1>
+    <>
+      <div>
       <Counter />
+      </div>  
       
-    </Provider>
-  )
+
+      <div className="my-8 border border-green-300 p-6 rounded-lg">
+        <h1 className="w-full text-2xl font-bold text-center mb-8 mt-2">To-Do Application</h1>
+          
+        {/* Todo form goes here */} 
+        <TodoForm/>
+        <br/>
+
+
+        <div className="flex flex-wrap gap-y-3">
+          {/*Loop and Add TodoItem here */}
+          {todos.map((todo)=>(
+          <div key={todo.id} className='w-full'>
+          <TodoItem todo={todo}/>
+          </div>
+          ))}
+        </div>
+      </div>
+          
+          
+    </>
+  );
 }
 
-export default App
+export default App;
