@@ -21,10 +21,14 @@ function Input({
                 className="text-3xl text-black ml-2 px-3 py-2 border border-gray-300 rounded-md"
                 value={selectedCurrency} 
                 onChange={(e) => setSelectedCurrency(e.target.value)}  
+            
+                overflow="auto"
             >   
             
                     {allCurrencies.map(currency => (
-                     <option  key={currency} value={currency}>{currency}</option>
+                    
+                    <option overflow="auto" size={4} key={currency} value={currency}>{currency}</option>
+                     
                 ))}
                 
                 
