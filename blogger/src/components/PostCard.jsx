@@ -10,10 +10,10 @@ function PostCard({$id, title, featuredImage}) {
   //console.log("PostCard : ",appwriteService.getFilePreview(featuredImage))
     
   return (
-    <Link to={`/post/${$id}`}>
+    <Link to={`/post/${$id}`} className="w-full aspect-square object-cover">
         <div className='w-full bg-gray-100 rounded-xl p-4 h-full'>
             <div className='w-full justify-center mb-4'>
-                <img src={appwriteService.getFilePreview(featuredImage)} alt={title}
+                <img src={appwriteService.getFilePreview(featuredImage) } alt={title}
                 className='rounded-xl' />
             </div>
             <h2
